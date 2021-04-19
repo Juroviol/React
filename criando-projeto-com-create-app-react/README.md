@@ -21,3 +21,11 @@ Você pode criar uma nova aplicação Typescrit utilizando templates. Para usar 
 ```
 npx create-react-app my-app --template typescript
 ```
+
+## Selecionando um gerenciador de pacotes
+
+Quando você cria uma nova aplicação, o CLI irá utilizar o Yarn para instalar as dependências (se disponível). Se você não tiver o Yarn instalado, mas prefira utilizar o npm, você pode adicionar --use-npm ao comando de criação. Por exemplo:
+
+```
+npx create-react-app my-app --use-npm
+```
