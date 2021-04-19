@@ -46,8 +46,8 @@ Nota: Você precisa restartar o servidor de desenvolvimento após mudar arquivos
 
 ### Quais tipos de arquivo .env podem ser utilizados?
 
-.env: Padrão.
-.env.local: Substituições locais. Este arquivo é carregado para todos os ambientes exceto test.
-.env.development, .env.test, .env.production: Configurações de ambiente.
-.env.development.local, .env.test.local, .env.production.local: Substituições locais para configurações de ambiente.
+- .env: Padrão.
+- .env.local: Substituições locais. Este arquivo é carregado para todos os ambientes exceto test.
+- .env.development, .env.test, .env.production: Configurações de ambiente.
+- .env.development.local, .env.test.local, .env.production.local: Substituições locais para configurações de ambiente.
 
