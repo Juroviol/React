@@ -29,3 +29,25 @@ Quando você cria uma nova aplicação, o CLI irá utilizar o Yarn para instalar
 ```
 npx create-react-app my-app --use-npm
 ```
+
+## Adicionado variáveis de ambiente em .env
+
+Para definir variáveis de ambiente permanentes, crie um arquivo chamado .env na raíz do seu projeto:
+
+```
+REACT_APP_NOT_SECRET_CODE=abcdef
+```
+
+Nota: Você deve criar variáveis de ambiente customizadas começando com o prefixo REACT_APP_. Qualquer outras variáveis, exceto NODE_ENV, serão ignoradas para evitar expor acidentalmente uma chave privada na máquina que pode ter o mesmo nome. Mudar qualquer variável de ambiente irá necessitar que você reinicie o servidor de desenvolvimenti se estiver executando.
+
+Nota: Você precisa restartar o servidor de desenvolvimento após mudar arquivos .env.
+
+É recomando que arquivos .env estejam no seu repositório de código e controle de versão (com a exceção do arquivo .env*.local).
+
+### Quais tipos de arquivo .env podem ser utilizados?
+
+.env: Padrão.
+.env.local: Substituições locais. Este arquivo é carregado para todos os ambientes exceto test.
+.env.development, .env.test, .env.production: Configurações de ambiente.
+.env.development.local, .env.test.local, .env.production.local: Substituições locais para configurações de ambiente.
+
