@@ -13,3 +13,11 @@ npm start
 ```
 
 Quando estiver pronto pra mandar pra produção, rode npm run build para criar e mandar o build otimizado de seu app para a pasta build.
+
+## Criando uma aplicação TypeScript
+
+Você pode criar uma nova aplicação Typescrit utilizando templates. Para usar o template Typescript padrão da ferramenta, adicione --template typescript no comando de criação.
+
+```
+npx create-react-app my-app --template typescript
+```
