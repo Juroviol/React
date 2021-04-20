@@ -3,6 +3,8 @@
 
 ## Componentes
 
+Há duas maneiras de se definir um componente: por função ou por classe.
+
 ### Função
 
 ```
