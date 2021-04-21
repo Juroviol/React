@@ -29,6 +29,7 @@ class Welcome extends React.Component {
 }
 ```
 
+- Utiliza a sintaxe de classes do ES6 com herença da biblioteca react;
 - Há controle de ciclo de vida através dos métodos `componentDidMount` e `componentDidUmnount`;
 - Há controle de estado. Por isso também são chamados de componentes 'stateful';
 - Há o método render e o JSX é retornado pelo mesmo;
