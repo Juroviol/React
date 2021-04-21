@@ -3,7 +3,7 @@
 
 ## Componentes
 
-Há duas maneiras de se definir um componente: por função ou por classe.
+Um componente representa parte da interface do usuario. Componentes são reutilizáveis e podem ser utilizados onde voce quiser. Há duas maneiras de se definir um componente: por função ou por classe.
 
 ### Por Função
 
