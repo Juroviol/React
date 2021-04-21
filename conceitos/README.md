@@ -5,7 +5,7 @@
 
 Há duas maneiras de se definir um componente: por função ou por classe.
 
-### Função
+### Por Função
 
 ```
 function Welcome(props) {
@@ -14,7 +14,7 @@ function Welcome(props) {
 ```
 
 
-### Classe
+### Por Classe
 
 ```
 class Welcome extends React.Component {
@@ -23,5 +23,3 @@ class Welcome extends React.Component {
   }
 }
 ```
-
-
