@@ -13,6 +13,11 @@ function Welcome(props) {
 }
 ```
 
+- Sintaxe simplificada;
+- Não há controle de ciclo de vida, por exemplo saber quando o componente foi construído ou quando foi destruído;
+- Não há controle de estado. Por isso também são chamados de componentes 'stateless';
+- Não existe o metodo render e o JSX é retornado direto pelo função;
+
 
 ### Por Classe
 
@@ -23,3 +28,7 @@ class Welcome extends React.Component {
   }
 }
 ```
+
+- Há controle de ciclo de vida através dos métodos `componentDidMount` e `componentDidUmnount`;
+- Há controle de estado. Por isso também são chamados de componentes 'stateful';
+- Há o método render e o JSX é retornado pelo mesmo;
