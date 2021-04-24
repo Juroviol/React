@@ -1,11 +1,19 @@
- # Conceitos
+# Conceitos
 
+- [Componentes](#componentes)
+    - [Função](#função)
+    - [Classe](#classe)
+    - [Comunicação entre componentes](##comunicação-entre-componentes)
+        - [Passando informações do pai para o filho usando Props](##passando-informações-do-pai-para-o-filho-usando-props)
+            - [Em Typescript](#em-typescript)
+        - [Passando informações do filho pro pai usando Props](#passando-informações-do-filho-pro-pai-usando-props)
+- [JSX](#jsx)    
 
 ## Componentes
 
 Um componente representa parte da interface do usuario. Componentes são reutilizáveis e podem ser utilizados onde voce quiser. Há duas maneiras de se definir um componente: por função ou por classe.
 
-### Por Função
+### Função
 
 ```
 function Welcome(props) {
@@ -19,7 +27,7 @@ function Welcome(props) {
 - Não existe o metodo render e o JSX é retornado direto pelo função;
 
 
-### Por Classe
+### Classe
 
 ```
 class Welcome extends React.Component {
