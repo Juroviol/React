@@ -186,7 +186,7 @@ class App extends React.Component {
 ...
 ```
 
-#Children
+##Children
 
 Como os elementos HTML podemos aninhar componentes dentro de componentes no JSX:
 
