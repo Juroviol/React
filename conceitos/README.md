@@ -248,3 +248,62 @@ render() {
 
 Tudo que é aninhado no JSX dentro de um componente é tratado da mesma forma e poderá ser obtido e renderizado através de `this.props.children`.
 
+Seguindo a idéia dos componentes `Foo` e `Bar` poderíamos renderizar o que foi aninhado no JSX dentro de `Foo` da seguinte forma:
+
+```
+//Imports
+
+class Foo extends React.Component {
+    
+    render() {
+        return (
+            {this.props.children}
+        );
+    }
+    
+    
+}
+
+...
+```
+
+Caso não se queira renderizar os filhos é preciso simplesmente não referenciar `this.props.children` no JSX.
+
+### Callback
+
+É possível também passar de forma aninhada no JSX até um callback:
+
+```
+...  
+    render() {
+        return (
+            <Foo>
+                {() => <span>Bar</span>}
+            </Foo>
+        );
+    }
+...
+```
+
+ A diferença é que nosso componente `Foo` precisamos invocar `this.props.children` como se fosse uma funcão:
+
+```
+//Imports
+
+class Foo extends React.Component {
+    
+    render() {
+        return (
+            {this.props.children()}
+        );
+    }
+    
+    
+}
+
+...
+```
+
+
+
+
