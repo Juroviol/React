@@ -306,7 +306,7 @@ class Foo extends React.Component {
 
 Isso é muito útil para se definir por exemplo um template customizado de um componente que já tem um template padrão com a possibilidade de neste template customizado obtermos e utilizarmos algum dado que é interno do componente o qual o callback está sendo aninhado.
 
-Em [exemplos](../exemplos) poderá ser encontrado o exemplo do componente [datatable](../exemplos/datatable/src/components/datatable/Datatable.tsx) o qual é aplicado a utilização de um callback como children de outro componente.
+Em [exemplos](../exemplos) poderá ser encontrado o exemplo do componente [datatable](../exemplos/datatable/src/App.tsx) o qual é aplicado a utilização de um callback como children de outro componente.
 
 
 
