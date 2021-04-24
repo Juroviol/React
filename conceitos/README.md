@@ -33,3 +33,16 @@ class Welcome extends React.Component {
 - Há controle de ciclo de vida através dos métodos `componentDidMount` e `componentDidUmnount`;
 - Há controle de estado. Por isso também são chamados de componentes 'stateful';
 - Há o método render e o JSX é retornado pelo mesmo;
+
+## JSX
+
+```
+const element = <h1>Hello, {this.props.name}</h1>;
+```
+
+Como podemos ver acima esta é uma sintaxe bem estranha para aqueles que estão familiarizados com JavaScript. Alguém desavisado poderia facilmente apontar que este código está com problemas e não iria rodar. Primeiramente o desavisado notaria que estamos atribuindo código HTML a uma constante do JavaScript e em seguida que a utilização das chaves no meio do HTML não faz sentido. 
+
+JSX é uma extensão de sintaxe para JavaScript. JSX produz “elementos” do React.
+
+Ao invés de separar tecnologias artificialmente colocando markup e lógica em arquivos separados, o React adota o fato de que a lógica de renderização é inerentemente acoplada com outras lógicas de UI: como eventos são manipulados, como o state muda com o tempo e como os dados são preparados para exibição.
+
