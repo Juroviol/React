@@ -34,6 +34,10 @@ class Welcome extends React.Component {
 - Há controle de estado. Por isso também são chamados de componentes 'stateful';
 - Há o método render e o JSX é retornado pelo mesmo;
 
+### Passando dados para outro componente
+
+#### Props
+
 ## JSX
 
 ```
