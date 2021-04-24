@@ -34,9 +34,77 @@ class Welcome extends React.Component {
 - Há controle de estado. Por isso também são chamados de componentes 'stateful';
 - Há o método render e o JSX é retornado pelo mesmo;
 
-### Passando dados para outro componente
+**Para os conceitos que serão abordados em diante utilizaremos sempre a sintaxe por classe.**
+
+### Comunicação entre componentes
 
 #### Props
+
+Com a idéia de que tudo é componente e que esses componentes podem ser reutilizados, todo componente pode receber dados de um componente pai e também passar dados ao seus componentes filhos. Isto é feito utilizando `props`.
+
+Vamos imaginar dois componentes: `App` e `List`. `App` é o componente que possui os dados da lista na estrutura de Array e `List` é o componente responsável por renderizar uma lista em HTML.
+
+```
+//Imports
+
+class App extends React.Component {
+  render() {
+    const linguagens = ['JAVA', 'Python', 'C#', 'Ruby'];
+    return (
+        <h3>Linguagens de programação</h3>
+        <p><List dados="{linguagens}"/></p>
+    );
+  }
+}
+
+...
+```
+
+```
+//Imports
+
+class List extends React.Component {
+  render() {
+    return (
+        <ul>{this.props.dados.map((item) => {
+            <li>{item}</li>
+        })}</ul>
+    );
+  }
+}
+
+...
+```
+
+Como podemos ver acima o componente `App` detêm em memória os dados das linguagens de programação e poderíamos renderizar a lista HTML nele mesmo usando JSX. Contudo com a ideia de componentização é preciso sempre avaliar a responsabilidade de cada componente. No caso temos a vantagem do componente `List` pode ser reutilizado por qualquer outro componente para renderizar uma lista HTML. Ele será responsável apenas por renderizar uma lista HTML.
+
+Todo atributo adicionado em um elemento de componente poderá ser obtido no componente filho através da expressão `this.props`.
+
+##### Em Typescript
+
+Em Typescript precisamos adaptar nosso código do componente filho conforme abaixo:
+
+```
+//Imports
+
+type ListProps = {
+    dados: any[];
+}
+
+class List extends React.Component<ListProps> {
+  render() {
+    return (
+        <ul>{this.props.dados.map((item) => {
+            <li>{item}</li>
+        })}</ul>
+    );
+  }
+}
+
+...
+```
+
+Isso porque o Typescript é uma linguagem tipada e a propriedade `props` precisa ter um tipo. Caso contrário o código não compilará pois não será possível acessar a propriedade `dados` de uma propriedade com tipo indefinido.
 
 ## JSX
 
