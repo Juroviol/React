@@ -117,12 +117,7 @@ Vamos adaptar o componente `List` anteriormente descrito para que ele notifique 
 ```
 //Imports
 
-type ListProps = {
-    dados: any[],
-    onListItemClicked?: (item: any) => void
-}
-
-class List extends React.Component<ListProps> {
+class List extends React.Component {
   render() {
     return (
         <ul>{this.props.dados.map((item) => {
@@ -146,7 +141,7 @@ Agora no componente pai `App` vamos modificar a declaração do componente `List
 
 class App extends React.Component {
 
-  constructor(props: any) {
+  constructor(props) {
   
     super(props);
     
@@ -154,7 +149,7 @@ class App extends React.Component {
     
   }
   
-  this.handleLinguagemClicked(linguagem: any): void {
+  this.handleLinguagemClicked(linguagem) {
      console.log(linguagem);
   }
   
