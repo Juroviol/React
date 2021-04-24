@@ -304,6 +304,10 @@ class Foo extends React.Component {
 ...
 ```
 
+Isso é muito útil para se definir por exemplo um template customizado de um componente que já tem um template padrão com a possibilidade de neste template customizado obtermos e utilizarmos algum dado que é interno do componente o qual o callback está sendo aninhado.
+
+
+
 
 
 
