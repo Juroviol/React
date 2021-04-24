@@ -38,7 +38,7 @@ class Welcome extends React.Component {
 
 ### Comunicação entre componentes
 
-#### Props
+#### Passando informações do pai para o filho usando Props
 
 Com a idéia de que tudo é componente e que esses componentes podem ser reutilizados, todo componente pode receber dados de um componente pai e também passar dados ao seus componentes filhos. Isto é feito utilizando `props`.
 
@@ -76,9 +76,11 @@ class List extends React.Component {
 ...
 ```
 
-Como podemos ver acima o componente `App` detêm em memória os dados das linguagens de programação e poderíamos renderizar a lista HTML nele mesmo usando JSX. Contudo com a ideia de componentização é preciso sempre avaliar a responsabilidade de cada componente. No caso temos a vantagem do componente `List` pode ser reutilizado por qualquer outro componente para renderizar uma lista HTML. Ele será responsável apenas por renderizar uma lista HTML.
+Como podemos ver acima o componente `App` detêm em memória os dados das linguagens de programação e poderíamos renderizar a lista HTML nele mesmo usando JSX. Contudo com a ideia de componentização é preciso sempre avaliar a responsabilidade de cada componente. No caso temos a vantagem do componente `List` poder ser reutilizado por qualquer outro componente para renderizar uma lista HTML. Ele será responsável apenas por renderizar uma lista HTML.
 
-Todo atributo adicionado em um elemento de componente poderá ser obtido no componente filho através da expressão `this.props`.
+No componente `App` podemos ver que o Array de linguagens é passado para o componente `List` através do atributo do elemento `dados`. Desta forma no componente `List` podemos pegar estes dados através da expressão `this.props.dados`.
+
+Qualquer tipo de dado poderá ser passado e obtido no componente filho através da expressão `this.props`.
 
 ##### Em Typescript
 
@@ -105,6 +107,70 @@ class List extends React.Component<ListProps> {
 ```
 
 Isso porque o Typescript é uma linguagem tipada e a propriedade `props` precisa ter um tipo. Caso contrário o código não compilará pois não será possível acessar a propriedade `dados` de uma propriedade com tipo indefinido.
+
+#### Passando informações do filho pro pai usando Props
+
+Também e possível passar funções no Props. Isso é muito útil quando queremos que alguma mudança de dado no componente filho chegue até o componente pai.
+
+Vamos adaptar o componente `List` anteriormente descrito para que ele notifique o componente `App` quando um dos itens da lista for clicado:
+
+```
+//Imports
+
+type ListProps = {
+    dados: any[],
+    onListItemClicked?: (item: any) => void
+}
+
+class List extends React.Component<ListProps> {
+  render() {
+    return (
+        <ul>{this.props.dados.map((item) => {
+            if(this.props.onListItemClicked) {
+                return <li onClick={this.props.onListItemClicked.bind(this, item)}>{item}</li>
+            } else {
+                return <li>{item}</li>
+            }
+        })}</ul>
+    );
+  }
+}
+
+...
+```
+
+Agora no componente pai `App` vamos modificar a declaração do componente `List` adicionado o atributo `onListItemClicked`, conforme criado no componente `List` para especificar uma função `handleLinguagemClicked` que criaremos para escrever no console do navegador a linguagem que foi clicada: 
+
+```
+//Imports
+
+class App extends React.Component {
+
+  constructor(props: any) {
+  
+    super(props);
+    
+    this.handleLinguagemClicked = this.handleLinguagemClicked.bind(this);
+    
+  }
+  
+  this.handleLinguagemClicked(linguagem: any): void {
+     console.log(linguagem);
+  }
+  
+  render() {
+    const linguagens = ['JAVA', 'Python', 'C#', 'Ruby'];
+    return (
+        <h3>Linguagens de programação</h3>
+        <p><List dados={linguagens} onListItemClicked={this.handleLinguagemClicked}/></p>
+    );
+  }
+}
+
+...
+```
+
+
 
 ## JSX
 
