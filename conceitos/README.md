@@ -8,6 +8,7 @@
         - [Passando informações do pai para o filho usando Props](#passando-informações-do-pai-para-o-filho-usando-props)
             - [Em Typescript](#em-typescript)
         - [Passando informações do filho pro pai usando Props](#passando-informações-do-filho-pro-pai-usando-props)
+- [Children](#children)    
 
 ## JSX
 
@@ -184,4 +185,66 @@ class App extends React.Component {
 
 ...
 ```
+
+#Children
+
+Como os elementos HTML podemos aninhar componentes dentro de componentes no JSX:
+
+Em HTML:
+
+```
+<div>
+    <div></div>
+    <div></div>
+    <div></div>
+<div>
+```
+
+Em React:
+
+```
+...
+render() {
+    return (
+        <Foo>
+            <Bar/>
+            <Bar/>
+            <Bar/>
+            <Bar/>
+        </Foo>
+    );
+}
+...
+```
+
+Também é possível aninhar HTML dentro de um componente:
+
+```
+...
+render() {
+    return (
+        <Foo>
+            <div>Bar</div>
+        </Foo>
+    );
+}
+...
+```
+
+E até misturá-los: 
+
+```
+...
+render() {
+    return (
+        <Foo>
+            <Bar/>
+            <div>Bar</div>
+        </Foo>
+    );
+}
+...
+```
+
+Tudo que é aninhado no JSX dentro de um componente é tratado da mesma forma e poderá ser obtido e renderizado através de `this.props.children`.
 
