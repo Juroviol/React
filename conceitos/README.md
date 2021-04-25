@@ -690,7 +690,7 @@ class ProgrammingLanguageList extends React.Component {
 ...
 ```
 
-Ao executar esse código, você receberá um aviso que uma chave deve ser definida para os itens da lista. key é um atributo string especial que você precisa definir ao criar listas de elementos. Iremos analisar os motivos pelos quais isso é importante na próxima seção.
+Ao executar esse código, você receberá um aviso que uma chave deve ser definida para os itens da lista. O atributo `key` é um atributo string especial que você precisa definir ao criar listas de elementos. Iremos analisar os motivos pelos quais isso é importante na sequência.
 
 Vamos atribuir uma key aos itens da nossa lista dentro de `languages.map()` e resolver o valor da chave que está em falta:
 
