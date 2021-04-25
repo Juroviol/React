@@ -17,6 +17,7 @@
         - [Clonando imutavelmente os elementos filhos](#clonando-imutavelmente-os-elementos-filhos)
     - [Callback](#callback)
 - [Eventos](#eventos)
+    - [Passando argumentos nos manipuladores de eventos](#passando-argumentos-nos-manipuladores-de-eventos)
 ## JSX
 
 ```
