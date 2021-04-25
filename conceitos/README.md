@@ -43,6 +43,7 @@
     - [JavaScript Object](#javaScript-object)
     - [CSS Stylesheet](#css-stylesheet)
     - [CSS Modules](#css-modules)
+    - [Bibliotecas de terceiros]
     
 ## JSX
 
