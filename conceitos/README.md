@@ -38,6 +38,8 @@
     - [Passando argumentos nos manipuladores de eventos](#passando-argumentos-nos-manipuladores-de-eventos)
 - [Forms](#forms)
 - [CSS](#css)
+    - [Inline Styling](#inline-styling)
+    - [camelCased Property Names](#camelcased-property-names)
     
 ## JSX
 
