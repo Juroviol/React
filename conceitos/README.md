@@ -9,7 +9,14 @@
             - [Em Typescript](#em-typescript)
         - [Passando informações do filho pro pai usando Props](#passando-informações-do-filho-pro-pai-usando-props)
 - [Children](#children)    
-
+    - [Utilitários](#utilitários)
+        - [Loops em .children](#loops-em-children)
+        - [Contando .children](#contando-children)
+        - [Convertendo .children em um array](#convertendo-children-em-um-array)
+        - [Permitir apenas um elemento filho](#permitir-apenas-um-elemento-filho)
+        - [Clonando imutavelmente os elementos filhos](#clonando-imutavelmente-os-elementos-filhos)
+    - [Callback](#callback)
+- [Eventos](#eventos)
 ## JSX
 
 ```
