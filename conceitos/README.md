@@ -37,6 +37,7 @@
 - [Eventos](#eventos)
     - [Passando argumentos nos manipuladores de eventos](#passando-argumentos-nos-manipuladores-de-eventos)
 - [Forms](#forms)
+- [CSS](#css)
     
 ## JSX
 
@@ -1165,3 +1166,57 @@ Dentro de uma estrutura de repetição, é comum querer passar um parâmetro ext
 ## Forms
 
 //TODO
+
+## CSS
+
+Há várias maneiras para utilizar estilos CSS no React.
+
+### Inline Styling
+
+Para aplicar um estilo a um elemento através do atributo inline, o valor deve ser um objeto JavaScript:
+
+```
+//Imports
+
+class MyHeader extends React.Component {
+
+  render() {
+    return (
+      <div>
+      <h1 style={{color: "red"}}>Hello Style!</h1>
+      <p>Add a little style!</p>
+      </div>
+    );
+  }
+  
+}
+
+...
+```
+
+**Note: No JSX, expressões JavaScript são escritas dentro de chaves, e como objetos JavaScript também utilizam chaves, o estilo do exemplo acima é escrito dentro de dois pares de chaves {{}}.***
+
+### camelCased Property Names
+
+Como o estilo CSS inline é escrito como um objeto JavaScript the inline CSS, propriedades com mais de uma palavra separada por hífen, como `background-color`, devem ser escritas na sintaxe camel case:
+
+```
+//Imports
+
+class MyHeader extends React.Component {
+
+  render() {
+    return (
+      <div>
+      <h1 style={{backgroundColor: "lightblue"}}>Hello Style!</h1>
+      <p>Add a little style!</p>
+      </div>
+    );
+  }
+  
+}
+
+...
+```
+
+
