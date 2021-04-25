@@ -39,7 +39,7 @@
 - [Forms](#forms)
 - [CSS](#css)
     - [Inline Styling](#inline-styling)
-    - [camelCased Property Names](#camelcased-property-names)
+        - [camelCased Property Names](#camelcased-property-names)
     
 ## JSX
 
@@ -1198,7 +1198,7 @@ class MyHeader extends React.Component {
 
 **Note: No JSX, expressões JavaScript são escritas dentro de chaves, e como objetos JavaScript também utilizam chaves, o estilo do exemplo acima é escrito dentro de dois pares de chaves {{}}.***
 
-### camelCased Property Names
+#### camelCased Property Names
 
 Como o estilo CSS inline é escrito como um objeto JavaScript the inline CSS, propriedades com mais de uma palavra separada por hífen, como `background-color`, devem ser escritas na sintaxe camel case:
 
