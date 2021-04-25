@@ -461,7 +461,201 @@ class Header extends React.Component {
 
 #### Updating
 
+A próxima fase no ciclo de vida é quando o componente é atualizado.
+
+O componente é atualizado quando houver mudança no objeto `state` ou `props`.
+
+React possui cinco métodos inerentes que são chamados, nesta ordem, quando o componente é atualizado:
+
+1. getDerivedStateFromProps()
+2. shouldComponentUpdate()
+3. render()
+4. getSnapshotBeforeUpdate()
+5. componentDidUpdate()
+
+##### getDerivedStateFromProps
+
+Também na atualização o método `getDerivedStateFromProps` é chamado. Agora é o primeiro método que é chamado quando o componente é atualizado.
+
+Para mais detalhes ver em [Mounting](#mounting) conforme já foi explicado quando o componente é construído.
+
+##### shouldComponentUpdate
+
+No método `shouldComponentUpdate()` você pode retornar um valor `Boolean` que especifica se o React deveria continuar com a renderização do componente ou não.
+
+O valor padrão é `true`.
+
+O exemplo abaixo demonstra o que acontece quando o método `shouldComponentUpdate()` retorna `false`:
+
+```
+//Imports
+
+class Header extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+  
+  shouldComponentUpdate() {
+    return false;
+  }
+  
+  changeColor = () => {
+    this.setState({favoritecolor: "blue"});
+  }
+  
+  render() {
+    return (
+      <div>
+      <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+      <button type="button" onClick={this.changeColor}>Change color</button>
+      </div>
+    );
+  }
+  
+}
+
+...
+```
+
+No caso nada acontece ao clicar no botão "Change color", pois com o clique do botão é atualizado o objeto `state` o qual 
+inicia o ciclo de vida de atualização e chama o método `shouldComponentUpdate()` o qual retorna falso.
+
+##### render
+
+O método `render()` também é chamado quando o componente atualiza escrevendo no DOM as mudanças de HTML.
+
+##### getSnapshotBeforeUpdate
+
+No método `getSnapshotBeforeUpdate()` você possui acesso as `props` e o objeto `state` antes da atualizaçao, sendo assim podendo verificar quais eram os valores antes da atualização.
+
+Se o método `getSnapshotBeforeUpdate()` foi definido, você deveria também definir o método `componentDidUpdate()`, caso contrário você obterá um erro.
+
+O exemplo abaixo pode parecer complicado, mas tudo o que acontece é isto:
+
+1. Quando o componente é construído é renderizado com a cor favorita: "red".
+2. Quando o componente foi construído, um timer altera o objeto `state`, e após um segundo, a cor favorita muda para "yellow".
+3. A atualização a partir do timer dispara a fase de atualização, e como o componente define o método `getSnapshotBeforeUpdate()`, o mesmo é executado, e escreve a mensagem no elemento div vazio: DIV1.
+4. Quando o método `componentDidUpdate()` é executado, escreve a mensagem no elemento div vazio: DIV2.
+
+```
+//Import
+
+class Header extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+  
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({favoritecolor: "yellow"})
+    }, 1000)
+  }
+  
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    document.getElementById("div1").innerHTML =
+    "Antes da atualização, a cor favorita era " + prevState.favoritecolor;
+  }
+  
+  componentDidUpdate() {
+    document.getElementById("div2").innerHTML =
+    "A cor favorita atualiza é " + this.state.favoritecolor;
+  }
+  
+  render() {
+    return (
+      <div>
+        <h1>Minha cor favorita é {this.state.favoritecolor}</h1>
+        <div id="div1"></div>
+        <div id="div2"></div>
+      </div>
+    );
+  }
+  
+}
+
+...
+```
+
+##### componentDidUpdate
+
+Quando a atualização do componente já foi renderizada no DOM. O método `componentDidUpdate` é chamado depois do componente ser renderizado.
+
+Este é o local que você executa códigos que requerem que o componente já esteja no DOM.
+
+Este método é muito útil quando precisamos capturar algum elemento no DOM logo ao inicializar o componente.
+
+O funcionamento é o mesmo do método [componentDidMount](#componentDidMount).
+
 #### Unmounting
+
+A próxima fase do ciclo de vida é quando um componente é removido do DOM.
+
+React possui apenas um método inerente que é chamado quando o componente é destruído:
+
+1. componentWillUnmount()
+
+##### componentWillUnmount
+
+O método `componentWillUnmount` é chamado quando o componente está prestes a ser removido do DOM.
+
+O exemplo abaixo demontra o componente `Child` sendo deixado de ser especificado no JSX do componente `Container` quando a propriedadade `show` do objeto `state` se torna `false` a partir do clique no botão "Delete Header".
+
+```
+// Imports
+
+class Container extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {show: true};
+    this.delHeader = this.delHeader.bind(this);
+  }
+  
+  delHeader() {
+    this.setState({show: false});
+  }
+  
+  render() {
+    let myheader;
+    if (this.state.show) {
+      myheader = <Child />;
+    };
+    return (
+      <div>
+      {myheader}
+      <button type="button" onClick={this.delHeader}>Delete Header</button>
+      </div>
+    );
+  }
+  
+}
+
+...
+```
+
+```
+//Imports
+
+class Child extends React.Component {
+
+  componentWillUnmount() {
+    alert("The component named Header is about to be unmounted.");
+  }
+  
+  render() {
+    return (
+      <h1>Hello World!</h1>
+    );
+  }
+  
+}
+
+...
+```
 
 ## Listas e Chaves
 
