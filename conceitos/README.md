@@ -44,6 +44,7 @@
     - [CSS Stylesheet](#css-stylesheet)
     - [CSS Modules](#css-modules)
 - [Consumindo API Restfull](#consumindo-api-restfull)
+- [Redux](#redux)
     
 ## JSX
 
@@ -1393,3 +1394,6 @@ class Contacts extends React.Component {
 ...
 ```
 
+## Redux
+
+//TODO
