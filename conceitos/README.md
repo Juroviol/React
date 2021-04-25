@@ -267,7 +267,237 @@ class Foo extends React.Component {
 ...
 ```
 
-Caso não se queira renderizar os filhos é preciso simplesmente não referenciar `this.props.children` no JSX.
+Caso não se queira renderizar os filhos é preciso simplesmente não referenciar `this.props.children` no JSX. Por exemplo, esse componente , não renderiza nenhum elemento filho:
+
+```
+//Imports 
+
+class HelloWorld extends React.Component {
+
+    render() {
+        return <h1>Hello world!</h1>
+    }
+    
+}
+
+...
+```
+
+### Utilitários
+
+Se você pode passar qualquer coisa, você nunca sabe ao certo qual o tipo do elemento filho.
+React tem um API que fornece várias funções utilitárias para manipular os elementos filhos de uma maneira bem simples e sem dor de cabeça (você não vai precisar escrever nenhum if).
+
+Essas funções estão disponíveis em **React.Children**.
+
+#### Loops em .children
+
+As duas funções utilitárias mais óbvias são React.Children.map e React.Children.forEach. Elas funcionam exatamente como Array.map e Array.forEach, a única diferença é que elas funcionam em funções, objetos ou qualquer outro tipo de elemento passado como elemento filho.
+
+```
+//Imports
+
+class IgnoreFirstChild extends React.Component {
+
+  render() {
+    const children = this.props.children
+    return (
+      <div>
+        {React.Children.map(children, (child, i) => {
+          // Ignora o primeiro elemento filho
+          if (i < 1) return
+          return child
+        })}
+      </div>
+    )
+  }
+  
+}
+
+...
+```
+
+O componente , itera todos os elementos filhos, ignorando o primeiro e retornando todos os outros.
+
+```
+<IgnoreFirstChild>
+  <h1>First</h1>
+  <h1>Second</h1> // <- Só esse será renderizado
+</IgnoreFirstChild>
+```
+
+Você pode pensar que poderíamos ter usado `this.props.children.map`. Mas, o que aconteceria se alguém passe-se uma função como elemento filho? `this.props.children` seria uma função ao invés de um array, e isso retornaria uma erro!
+
+#### Contando .children
+
+Levando em conta que `this.props.children` pode ser qualquer tipo, contar quantos elementos filhos um componente tem, começa a ser uma tarefa complicada. Ingenuamente, usar `this.props.children.length` iria quebrar caso passássemos uma nó de texto ou uma função. Nós teríamos apenas um elemento filho, “Hello World!”, mas o `.length` iria retornar um valor de 12!
+
+É por isso que nós temos a função utilitária **React.Children.count**:
+
+```
+//Imports
+
+class ChildrenCounter extends React.Component {
+
+  render() {
+    return <p>React.Children.count(this.props.children)</p>
+  }
+
+}
+
+...
+```
+
+Ele retorna o número de elementos filhos, independente do tipo:
+
+```
+// Renderiza "1"
+<ChildrenCounter>
+  Second!
+</ChildrenCounter>
+
+// Renderiza "2"
+<ChildrenCounter>
+  <p>First</p>
+  <ChildComponent />
+</ChildrenCounter>
+
+// Renderiza "3"
+<ChildrenCounter>
+  {() => <h1>First!</h1>}
+  Second!
+  <p>Third!</p>
+</ChildrenCounter>
+```
+
+#### Convertendo .children em um array
+
+Como último recurso, se nenhum dos métodos acima te ajudarem, você pode converter seu elemento filho em um array usando **React.Children.toArray**. Isso seria útil caso, por exemplo, você precisar ordenar eles:
+
+```
+//Imports
+
+class Sort extends React.Component {
+  
+  render() {
+    const children = React.Children.toArray(this.props.children)
+    // Ordenando e renderizando os elementos filhos
+    return <p>{children.sort().join(' ')}</p>
+  }
+  
+}
+
+...
+```
+
+E para usá-lo:
+
+```
+<Sort>
+  // Estamos usando “expression containers” para ter certeza
+  // que serão passados 3 nós de texto, e não apenas um
+  {'bananas'}{'oranges'}{'apples'}
+</Sort>
+```
+
+#### Permitir apenas um elemento filho
+
+Se olharmos nosso primeiro exemplo, ele está esperando receber apenas um elemento filho, que nesse caso é uma função:
+
+```
+//Imports
+
+class Executioner extends React.Component {
+
+  render() {
+    return this.props.children()
+  }
+  
+}
+
+...
+```
+
+Para garantir que apenas um elemento filho seja executado, caso passem mais de um elemento filho, podemos usar **React.Children.only** dentro do nosso método render:
+
+```
+//Imports
+
+class Executioner extends React.Component {
+  
+  render() {
+    return React.Children.only(this.props.children)()
+  }
+  
+}
+
+...
+```
+
+#### Clonando imutavelmente os elementos filhos
+
+A última, mas não menos importante, função utilitária de hoje, como o título sugere, é **React.cloneElement**, para clonar elementos. Nós passamos o elemento alvo como primeiro argumento, e como segundo argumento nós podemos passar um objeto de propriedades que queremos que sejam adicionadas no elemento alvo:
+
+```
+const cloned = React.cloneElement(element, {
+  new: 'yes!'
+})
+```
+
+Como resultado, o elemento **cloned** terá uma propriedade `props.new` com valor ”yes!”.
+
+Vamos imaginar o seguinte exemplo:
+
+```
+<RadioGroup>
+  <RadioButton value="first">First</RadioButton>
+  <RadioButton value="second">Second</RadioButton>
+  <RadioButton value="third">Third</RadioButton>
+</RadioGroup>
+```
+
+Como sabemos para agrupar radio buttons precisamos utilizar ara agrupar os inputs nós precisamos passar um atributo name para cada um deles. Contudo ter que passar para cada um dos `RadioButton` é tedioso e propenso a erros. 
+
+Ao invés de passar para cada `RadioButton` o atributo name, nós vamos passar o atributo name para o `RadioGroup` e internamente editar os filhos e passar este atributo para cada um deles:
+
+```
+//Imports
+
+class RadioGroup extends React.Component {
+
+    constructor() {
+        super()
+        // Realizando o .bind em React ES6
+        this.renderChildren = this.renderChildren.bind(this)
+    }
+    
+    renderChildren() {
+        //Iteramos por cada filho
+        return React.Children.map(this.props.children, child => {
+            //Clonamos o elemento e adicionamos o atributo name
+            //que foi passado 
+            return React.cloneElement(child, {
+                name: this.props.name
+            })
+        })
+    }
+   
+    render() {
+        return (
+            <div className="group">
+                {this.renderChildren()}
+            </div>
+        )
+    }
+    
+}
+
+...
+```
+
+
+
+
 
 ### Callback
 
@@ -285,7 +515,7 @@ Caso não se queira renderizar os filhos é preciso simplesmente não referencia
 ...
 ```
 
- A diferença é que nosso componente `Foo` precisamos invocar `this.props.children` como se fosse uma funcão:
+A diferença é que nosso componente `Foo` precisamos invocar `this.props.children` como se fosse uma funcão:
 
 ```
 //Imports
