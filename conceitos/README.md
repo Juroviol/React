@@ -1361,7 +1361,7 @@ Isso é útil para que os estilos CSS especificados no arquivo separado só refl
 
 Para consumir API Restfull em um componente no React o local mais ideal para isso é no método `componentDidMount()`. Já foi falado sobre este método [aqui](#componentDidMount).
 
-No exemplo abaixo um código de exemplo no qual é utilizado a API [fetch](https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch).
+Abaixo um código de exemplo no qual é utilizado a API [fetch](https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch) para consumir um endpoint que retorna uma lista de pessoas:
 
 ```
 //Imports
