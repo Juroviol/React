@@ -667,7 +667,81 @@ class Child extends React.Component {
 
 ## Listas e Chaves
 
-//TODO
+Para renderizar uma lista não há muito segredo. Nas expressões entre chaves no JSX conseguimos a partir de uma lista gerar vários elementos React para serem renderizados.
+
+Abaixo temos o componente `ProgrammingLanguageList` o qual é responsável por renderizar uma lista em HTML utilizando `ul`:
+
+```
+//Imports
+
+class ProgrammingLanguageList extends React.Component {
+
+    render() {
+        const languages = ['JAVA', 'Python', 'C#', 'Ruby'];
+        return (
+            <ul>
+                {languages.map(language => <li>{language}<li>)}
+            </ul>
+        )
+    }
+    
+}
+
+...
+```
+
+Ao executar esse código, você receberá um aviso que uma chave deve ser definida para os itens da lista. key é um atributo string especial que você precisa definir ao criar listas de elementos. Iremos analisar os motivos pelos quais isso é importante na próxima seção.
+
+Vamos atribuir uma key aos itens da nossa lista dentro de `languages.map()` e resolver o valor da chave que está em falta:
+
+```
+//Imports
+
+class ProgrammingLanguageList extends React.Component {
+
+    render() {
+        const languages = ['JAVA', 'Python', 'C#', 'Ruby'];
+        return (
+            <ul>
+                {languages.map(language => <li key={language}>{language}<li>)}
+            </ul>
+        )
+    }
+    
+}
+
+...
+```
+
+As chaves ajudam o React a identificar quais itens sofreram alterações, foram adicionados ou removidos. As chaves devem ser atribuídas aos elementos dentro do array para dar uma identidade estável aos elementos.
+
+A melhor forma de escolher uma chave é usar uma string que identifica unicamente um item da lista dentre os demais. Na maioria das vezes você usaria IDs de seus dados como chave:
+
+```
+//Imports
+
+class ProgrammingLanguageList extends React.Component {
+
+    render() {
+        const languages = [
+            {id: 1, nome: 'JAVA'}, 
+            {id: 2, nome: 'Python'}, 
+            {id: 3, nome: 'C#'}, 
+            {id: 4, nome: 'Ruby'}
+        ];
+        return (
+            <ul>
+                {languages.map(language => <li key={language.id.toString()}>{language.nome}<li>)}
+            </ul>
+        )
+    }
+    
+}
+
+...
+```
+
+Quando você não possui nenhum ID estável para os itens renderizados, você pode usar o índice na iteração do item como chave em último recurso. Contudo não é recomendado o uso de índices para chave se a ordem dos itens pode ser alterada. Isso pode impactar de forma negativa o desempenho e poderá causar problemas com o estado do componente.
 
 ## Children
 
