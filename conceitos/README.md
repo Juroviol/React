@@ -1033,7 +1033,7 @@ Por exemplo, com HTML:
 É ligeiramente diferente com React:
 
 ```
-<button onClick={activateLasers}>
+<button onClick={this.activateLasers}>
   Ativar lasers
 </button>
 ```
