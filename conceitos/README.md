@@ -8,6 +8,9 @@
         - [Passando informações do pai para o filho usando Props](#passando-informações-do-pai-para-o-filho-usando-props)
             - [Em Typescript](#em-typescript)
         - [Passando informações do filho pro pai usando Props](#passando-informações-do-filho-pro-pai-usando-props)
+    - [Estado](#estado)
+    - [Ciclo de vida](#ciclo-de-vida)
+- [Listas e Chaves](#listas-e-chaves)    
 - [Children](#children)    
     - [Utilitários](#utilitários)
         - [Loops em .children](#loops-em-children)
@@ -193,6 +196,210 @@ class App extends React.Component {
 
 ...
 ```
+
+### Estado
+
+Componentes de classe, ou componentes `stateful`, possuem um objeto inerente chamado `state`. O objeto `state` é onde você armazena valor de propriedades que pertencem ao componente. Quando o objeto `state` muda, o componente é renderizado novamente.
+
+#### Criando o objeto state
+
+O objeto `state` é inicializado no contrutor:
+
+```
+//Imports 
+
+class Car extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {brand: "Ford"};
+  }
+  
+  render() {
+    return (
+      <div>
+        <h1>My Car</h1>
+      </div>
+    );
+  }
+  
+}
+
+...
+```
+
+O objeto `state` pode conter quantas propriedades você quiser.
+
+Referencie o objeto `state` em qualquer lugar do seu componente uando a sintaxe `this.state.<propriedade>`:
+
+```
+class Car extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: "Ford",
+      model: "Mustang",
+      color: "red",
+      year: 1964
+    };
+  }
+  
+  render() {
+    return (
+      <div>
+        <h1>My {this.state.brand}</h1>
+        <p>
+          It is a {this.state.color}
+          {this.state.model}
+          from {this.state.year}.
+        </p>
+      </div>
+    );
+  }
+  
+}
+```
+
+#### Atualizando o objeto state
+
+Para mudar um valor no objeto `state`, utilize o método da classe `this.setState()`.
+
+Quando um valor no objeto `state` mudar, o componente irá renderizar novamente, fazendo com que a saída na tela atualize de acordo com o(s) novo(s) valor(es).
+
+Vamos adicionar um botão com um evento `onClick` que irá alterar a propriedade `color`:
+
+```
+//Imports
+
+class Car extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: "Ford",
+      model: "Mustang",
+      color: "red",
+      year: 1964
+    };
+    this.changeColor = this.changeColor.bind(this);
+  }
+  
+  changeColor() {
+    this.setState({color: "blue"});
+  }
+  
+  render() {
+    return (
+      <div>
+        <h1>My {this.state.brand}</h1>
+        <p>
+          It is a {this.state.color}
+          {this.state.model}
+          from {this.state.year}.
+        </p>
+        <button
+          type="button"
+          onClick={this.changeColor}
+        >Change color</button>
+      </div>
+    );
+  }
+  
+}
+
+...
+```
+
+### Ciclo de Vida
+
+Cada componente em React possui um ciclo de vida o qual você pode monitorar e manipular durante suas três princiais fases.
+
+As três fases são: Mounting, Updating, and Unmounting.
+
+#### Mounting
+
+Mounting quer dizer colocar elementos no DOM.
+
+React possui quatro métodos inerentes que são chamados, nesta ordem, quando está construindo o componente:
+
+1. constructor()
+2. getDerivedStateFromProps()
+3. render()
+4. componentDidMount()
+
+O método `render()` é obrigatório e será sempre chamado, os outros são opcionais e serão chamados se você defini-los.
+
+##### constructor
+
+O método `constructor()` é chamado antes de tudo, quando o componente é iniciado, e é o local natural para inicializar o objeto `state`, realizar bind dos métodos da classe e outros valores iniciais.
+
+O método `constructor()` é chamado com o props, como argumento, e é aconselhado sempre a chamar `super(props` antes de qualquer coisa, pois isto irá iniciar o contrutor do componente pai e permitir ao componente header métodos de seu pai `React.Component`.
+
+```
+//Imports
+
+class Header extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+  
+  render() {
+    return (
+      <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+    );
+  }
+  
+}
+
+...
+```
+
+##### getDerivedStateFromProps
+
+O método `getDerivedStateFromProps()` é chamado exatamente antes de renderizar os elementos no DOM, ou seja antes do método `render()`.
+
+Este é o local natural para atualizar o objeto `state` baseado nas propriedades iniciais.
+
+Recebe como argumento o `state`, e retorna um objeto com as mudanças no `state`.
+
+O exemplo abaixo inicia com a cor favorita sendo "red", mas o método `getDerivedStateFromProps()` altera a cor favorita baseado no valor do atributo `favcol`:
+
+```
+//Imports
+
+class Header extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+  
+  static getDerivedStateFromProps(props, state) {
+    return {favoritecolor: props.favcol };
+  }
+  
+  render() {
+    return (
+      <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+    );
+  }
+  
+}
+
+...
+```
+
+#### Updating
+
+
+#### Unmounting
+
+## Listas e Chaves
+
+//TODO
 
 ## Children
 
