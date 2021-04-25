@@ -36,6 +36,8 @@
     - [Callback](#callback)
 - [Eventos](#eventos)
     - [Passando argumentos nos manipuladores de eventos](#passando-argumentos-nos-manipuladores-de-eventos)
+- [Forms](#forms)
+    
 ## JSX
 
 ```
@@ -1085,3 +1087,5 @@ Dentro de uma estrutura de repetição, é comum querer passar um parâmetro ext
 ```
 <button onClick={this.deleteRow.bind(this, id)}>Deletar linha</button>
 ```
+
+## Forms
