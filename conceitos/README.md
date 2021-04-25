@@ -43,6 +43,7 @@
     - [JavaScript Object](#javaScript-object)
     - [CSS Stylesheet](#css-stylesheet)
     - [CSS Modules](#css-modules)
+- [Consumindo API Restfull](#consumindo-api-restfull)
     
 ## JSX
 
@@ -1355,4 +1356,40 @@ Também a própria tag `<h1>` do componente `Car` gerá gerada no HTML referenci
 ```
 
 Isso é útil para que os estilos CSS especificados no arquivo separado só reflitam para este componente e não impactem demais componentes da interface.
+
+## Consumindo API Restfull
+
+Para consumir API Restfull em um componente no React o local mais ideal para isso é no método `componentDidMount()`. Já foi falado sobre este método [aqui](#componentDidMount).
+
+No exemplo abaixo um código de exemplo no qual é utilizado a API [fetch](https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch).
+
+```
+//Imports
+
+class Contacts extends React.Component {
+
+      constructor(props) {
+        super(props);
+        this.state = {
+            contacts: []
+        }
+      }
+      
+      render() {
+        ...
+      }
+      
+      componentDidMount() {
+        fetch('http://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .then((data) => {
+          this.setState({ contacts: data }) //Aqui é disparado o ciclo de vida de atualização, o qual chama o render() novamente
+        })
+        .catch(console.log)
+      }
+      
+}
+
+...
+```
 
