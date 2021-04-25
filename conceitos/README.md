@@ -42,6 +42,7 @@
         - [camelCased Property Names](#camelcased-property-names)
     - [JavaScript Object](#javaScript-object)
     - [CSS Stylesheet](#css-stylesheet)
+    - [CSS Modules](#css-modules)
     
 ## JSX
 
@@ -1198,7 +1199,7 @@ class MyHeader extends React.Component {
 ...
 ```
 
-**Note: No JSX, expressões JavaScript são escritas dentro de chaves, e como objetos JavaScript também utilizam chaves, o estilo do exemplo acima é escrito dentro de dois pares de chaves {{}}.***
+**Nota: No JSX, expressões JavaScript são escritas dentro de chaves, e como objetos JavaScript também utilizam chaves, o estilo do exemplo acima é escrito dentro de dois pares de chaves {{}}.***
 
 #### camelCased Property Names
 
@@ -1289,3 +1290,69 @@ class MyHeader extends React.Component {
 
 ...
 ```
+
+### CSS Modules
+
+Outra maneira é adicionar estilos na aplicação usando CSS Modules.
+
+CSS Modules são convenientes para componentes que são separados em diferentes arquivos.
+
+*Car.module.css*
+
+```
+.bigblue {
+  color: DodgerBlue;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+```
+
+*Car.jsx*
+
+```
+//Imports
+import styles from "./Car.module.css";
+
+class Car extends React.Component {
+
+  render() {
+    return <h1 className={styles.bigblue}>Hello Car!</h1>;
+  }
+  
+}
+
+...
+```
+
+Conforme o exemplo acima, após a renderização do componente, a classe CSS `bigblue` será gerada na tag `<head>`do HTML com um identificador gerado de suffixo:
+
+```
+<html>
+...
+<head>
+  <style>
+    .Car_bigblue_dhBJkL {
+      color: DodgerBlue;
+      padding: 40px;
+      font-family: Arial;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+...
+</body>
+</html>
+```
+
+Também a própria tag `<h1>` do componente `Car` gerá gerada no HTML referenciando a classe gerada:
+
+```
+...
+<h1 class="Car_bigblue_dhBJkL">Hello Car!</h1>
+...
+```
+
+Isso é útil para que os estilos CSS especificados no arquivo separado só reflitam para este componente e não impactem demais componentes da interface.
+
