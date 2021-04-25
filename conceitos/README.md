@@ -18,7 +18,13 @@
             - [render](#render)
             - [componentDidMount](#componentDidMount)
         - [Updating](#updating)
+            - [getDerivedStateFromProps](#getDerivedStateFromProps)
+            - [shouldComponentUpdate](#shouldComponentUpdate)
+            - [render](#render-do-updating)
+            - [getSnapshotBeforeUpdate](#getSnapshotBeforeUpdate)
+            - [componentDidUpdate](#componentDidUpdate)
         - [Unmounting](#unmounting)
+            - [componentWillUnmount](#componentWillUnmount)
 - [Listas e Chaves](#listas-e-chaves)    
 - [Children](#children)    
     - [Utilitários](#utilitários)
@@ -522,7 +528,7 @@ class Header extends React.Component {
 No caso nada acontece ao clicar no botão "Change color", pois com o clique do botão é atualizado o objeto `state` o qual 
 inicia o ciclo de vida de atualização e chama o método `shouldComponentUpdate()` o qual retorna falso.
 
-##### render
+##### <a id="render-do-updating">render</a>
 
 O método `render()` também é chamado quando o componente atualiza escrevendo no DOM as mudanças de HTML.
 
