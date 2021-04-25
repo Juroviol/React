@@ -392,8 +392,65 @@ class Header extends React.Component {
 ...
 ```
 
-#### Updating
+##### render
 
+O método `render()` é obrigatório, e é ele que efetivamente escreve o HTML no DOM.
+
+```
+//Imports
+
+class Header extends React.Component {
+  
+  render() {
+    return (
+      <h1>This is the content of the Header component</h1>
+    );
+  }
+  
+}
+
+...
+```
+
+##### componentDidMount
+
+O método `componentDidMount()` é chamado depois do componente ser renderizado.
+
+Este é o local que você executa códigos que requerem que o componente já esteja no DOM.
+
+Este método é muito útil quando precisamos capturar algum elemento no DOM logo ao inicializar o componente.
+
+O exemplo abaixo atualiza a cor para "yellow" após um segundo depois que o componente já foi renderizado. Isso quer 
+dizer que será possível ver esta atualização em tela. 
+
+```
+//Imports
+
+class Header extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+  
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({favoritecolor: "yellow"})
+    }, 1000)
+  }
+  
+  render() {
+    return (
+      <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+    );
+  }
+  
+}
+
+...
+```
+
+#### Updating
 
 #### Unmounting
 
