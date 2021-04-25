@@ -40,6 +40,8 @@
 - [CSS](#css)
     - [Inline Styling](#inline-styling)
         - [camelCased Property Names](#camelcased-property-names)
+    - [JavaScript Object](#javaScript-object)
+    - [CSS Stylesheet](#css-stylesheet)
     
 ## JSX
 
@@ -1221,4 +1223,69 @@ class MyHeader extends React.Component {
 ...
 ```
 
+### JavaScript Object
 
+Também é possível criar um objeto com estilos CSS, e referenciá-lo no atributo `style`:
+
+```
+//Imports
+
+class MyHeader extends React.Component {
+
+  render() {
+    const mystyle = {
+      color: "white",
+      backgroundColor: "DodgerBlue",
+      padding: "10px",
+      fontFamily: "Arial"
+    };
+    return (
+      <div>
+      <h1 style={mystyle}>Hello Style!</h1>
+      <p>Add a little style!</p>
+      </div>
+    );
+  }
+  
+}
+
+...
+```
+
+### CSS Stylesheet
+
+É possível escrever os estilos CSS em um arquivo separado, apenas salve um arquivo com a extensão .css, e importe na sua aplicação.
+
+*App.css*
+
+```
+body {
+  background-color: #282c34;
+  color: white;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+```
+
+*MyHeader.tsx*
+
+```
+import "./App.css";
+
+class MyHeader extends React.Component {
+  
+  render() {
+    return (
+      <div>
+      <h1>Hello Style!</h1>
+      <p>Add a little style!.</p>
+      </div>
+    );
+  
+  }
+
+}
+
+...
+```
