@@ -309,7 +309,68 @@ Isso é muito útil para se definir por exemplo um template customizado de um co
 Em [exemplos](../exemplos) poderá ser encontrado o exemplo do componente [datatable](../exemplos/datatable/src/App.tsx) o qual é aplicado a utilização de um callback como children de outro componente.
 
 
+## Eventos
 
+Por exemplo, com HTML:
 
+```
+<button onclick="activateLasers()">
+  Ativar lasers
+</button>
+```
 
+É ligeiramente diferente com React:
 
+```
+<button onClick={activateLasers}>
+  Ativar lasers
+</button>
+```
+
+Outra diferença é que você não pode retornar false para evitar o comportamento padrão no React. Você deve chamar `preventDefault` explícitamente. Por exemplo, com HTML simples, para evitar que um link abra uma nova página, você pode escrever:
+
+```
+<a href="#" onclick="console.log('O link foi clicado.'); return false">
+  Clique Aqui
+</a>
+```
+
+No React, isso poderia ser:
+
+```
+//Imports 
+
+class ActionLink extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    function handleClick(e) {
+        e.preventDefault();
+        console.log('O link foi clicado.');
+    }
+    
+    render() {
+        return (
+            <a href="#" onClick={this.handleClick}>
+                Clique Aqui
+            </a>
+        );
+    }   
+
+}
+
+...    
+```
+
+Você precisa ter cuidado com o significado do this nos callbacks do JSX. Em JavaScript, os métodos de classe não são vinculados por padrão. Se você esquecer de fazer o bind de this.handleClick e passá-lo para um onClick, o this será undefined quando a função for realmente chamada.
+
+### Passando argumentos nos manipuladores de eventos
+
+Dentro de uma estrutura de repetição, é comum querer passar um parâmetro extra para um manipulador de evento. Por exemplo, se id é o ID de identificação da linha, a sintaxe a seguir funcionará:
+
+```
+<button onClick={this.deleteRow.bind(this, id)}>Deletar linha</button>
+```
