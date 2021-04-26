@@ -1401,4 +1401,4 @@ class Contacts extends React.Component {
 
 ## Redux
 
-//TODO
+Excelente vídeo explicando o conceito de Store, Action, Reducer e mostrando uma utilização do redux: https://www.youtube.com/watch?v=u99tNt3TZf8
