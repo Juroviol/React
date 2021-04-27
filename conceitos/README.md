@@ -95,7 +95,7 @@ class Welcome extends React.Component {
 - Há controle de estado. Por isso também são chamados de componentes 'stateful';
 - Há o método render e o JSX é retornado pelo mesmo;
 
-**Para os conceitos que serão abordados em diante utilizaremos sempre a sintaxe por classe.**
+> Para os conceitos que serão abordados em diante utilizaremos sempre a sintaxe por classe.
 
 ### Comunicação entre componentes
 
@@ -1205,7 +1205,7 @@ class MyHeader extends React.Component {
 ...
 ```
 
-**Nota: No JSX, expressões JavaScript são escritas dentro de chaves, e como objetos JavaScript também utilizam chaves, o estilo do exemplo acima é escrito dentro de dois pares de chaves {{}}.***
+> Nota: No JSX, expressões JavaScript são escritas dentro de chaves, e como objetos JavaScript também utilizam chaves, o estilo do exemplo acima é escrito dentro de dois pares de chaves {{}}.
 
 #### camelCased Property Names
 
