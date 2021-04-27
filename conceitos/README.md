@@ -47,6 +47,7 @@
 - [Rotas](#rotas)
 - [Hooks](#hooks)
     - [useState](#usestate)
+    - [useEffect](#useeffect)
 - [Redux](#redux)
     
 ## JSX
@@ -1407,6 +1408,10 @@ Os "hooks" vieram para nos permitir escrever componentes utilizando funções se
 como escrever componentes que possuíssem estado, os componentes "stateful", porque não tínhamos acesso aos métodos herdados pela classe `Component`, o qual os componentes de classe devem herdar, como `this.setState`.
 
 ### useState
+
+//TODO
+
+### useEffect
 
 //TODO
 
