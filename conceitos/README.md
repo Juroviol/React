@@ -1409,6 +1409,29 @@ como escrever componentes que possuíssem estado, os componentes "stateful", por
 
 ### useState
 
+O "hook" 'useState' é um método que permite que possamos ter um estado no nosso componente como função.
+
+```
+import React, { useState } from "react";
+
+export default function App() {
+
+    const [numeros, setNumeros] = useState([1, 2, 3, 4, 5]);
+    
+    return (
+        <ul>
+            {numeros.map(numero => (<li>{numero}</li>))}
+        </ul>
+    }
+
+}
+```
+
+No código `const [numeros, setNumeros] = useState([1, 2, 3, 4, 5]);` estamos declarando que usaremos estado e que este estado será criado inicialmente com números de 1 a 5.
+
+Caso seja necessário modificar a lista para que o componente seja atualizado em tela precisamos apenas chamar o método `setNumeros` que fará o mesmo trabalho
+do método `this.setState` que é necessário quando o componente é feito através de classe.
+
 //TODO
 
 ### useEffect
