@@ -1432,8 +1432,6 @@ No código `const [numeros, setNumeros] = useState([1, 2, 3, 4, 5]);` estamos de
 Caso seja necessário modificar a lista para que o componente seja atualizado em tela precisamos apenas chamar o método `setNumeros` que fará o mesmo trabalho
 do método `this.setState` que é necessário quando o componente é feito através de classe.
 
-//TODO
-
 ### useEffect
 
 //TODO
