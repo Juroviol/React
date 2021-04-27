@@ -1413,6 +1413,8 @@ Esses três conceitos existem para fazerem funcionar a arquitetura do Redux. A i
 
 ### Store
 
+A store é o local onde são armazenados as informações que precisam ser compartilhadas entre componentes.
+
 ### Action
 
 ### Reducer
