@@ -1401,6 +1401,8 @@ class Contacts extends React.Component {
 
 ## Redux
 
+O Redux veio para resolver um problema que você talvez nem se depare. Por isso é importante entender o que ele resolve pois ele adiciona diversos arquivos ao projeto com configuracoes. O Redux no React objetivamente vem para resolver o problema de componentes que precisam exibir informações de forma sincronizada sem ficar passando informação de um componente pro outro utilizando por exemplo [Props](#comunicação-entre-componentes). Muito porque nem sempre os componentes que compartilharão informações não estarão numa mesma hierarquia de componentes, fazendo com que você seja tentado a passar as informações para um componente pai até que você consigar atingir um outro componente.
+
 Excelente vídeo explicando o conceito de Store, Action, Reducer e mostrando uma utilização do redux com JavaScript: https://www.youtube.com/watch?v=u99tNt3TZf8.
 
 Outro vídeo assumindo que os conceitos de Store, Action, Reducer já estejam entendidos mas utilizando com Typescript: https://www.youtube.com/watch?v=OXxul6AvXNs
