@@ -1404,7 +1404,7 @@ class Contacts extends React.Component {
 
 ## Hooks
 
-Os "hooks" vieram para nos permitir escrever componentes utilizando funções sem a necessidade de escreve-los como classes. Porém antes dos "hooks" não tínhamos
+Hooks são uma nova adição ao React 16.8. Os "hooks" vieram para nos permitir escrever componentes utilizando funções sem a necessidade de escreve-los como classes. Porém antes dos "hooks" não tínhamos
 como escrever componentes que possuíssem estado, os componentes "stateful", porque não tínhamos acesso aos métodos herdados pela classe `Component`, o qual os componentes de classe devem herdar, como `this.setState`.
 
 ### useState
